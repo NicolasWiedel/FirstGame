@@ -1,33 +1,56 @@
 package de.nicolas;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.Game;
+import de.nicolas.views.*;
 
-/** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
-public class GdxGame extends ApplicationAdapter {
-    private SpriteBatch batch;
-    private Texture image;
+public class GdxGame extends Game {
+
+    /** Verweise auf die möglichen Screens im Spiel */
+    private LoadingScreen loadingScreen;
+    private PreferencesScreen preferencesScreen;
+    private MenuScreen menuScreen;
+    private MainScreen mainScreen;
+    private EndScreen endScreen;
+
+    /** Die möglichen Zustände in die das Spiel wechseln kann */
+    public final static int MENU = 0;
+    public final static int PREFERENCES = 1;
+    public final static int APPLICATION = 2;
+    public final static int ENDGAME = 3;
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        image = new Texture("libgdx.png");
+        loadingScreen = new LoadingScreen(this);
+        setScreen(loadingScreen);
     }
 
-    @Override
-    public void render() {
-        ScreenUtils.clear(0.15f, 0.15f, 0.2f, 1f);
-        batch.begin();
-        batch.draw(image, 140, 210);
-        batch.end();
-    }
-
-    @Override
-    public void dispose() {
-        batch.dispose();
-        image.dispose();
+    /** Metjode, die das Wechseln der Screens ermöglicht */
+    public void changeScreen(int screen){
+        switch (screen){
+            case MENU:
+                if (menuScreen == null){
+                    menuScreen = new MenuScreen(this);
+                }
+                setScreen(menuScreen);
+                break;
+            case PREFERENCES:
+                if (preferencesScreen == null){
+                    preferencesScreen = new PreferencesScreen(this);
+                }
+                setScreen(preferencesScreen);
+                break;
+            case APPLICATION:
+                if (mainScreen == null){
+                    mainScreen = new MainScreen(this);
+                }
+                setScreen(mainScreen);
+                break;
+            case ENDGAME:
+                if (endScreen == null){
+                    endScreen = new EndScreen(this);
+                }
+                setScreen(endScreen);
+                break;
+        }
     }
 }

@@ -4,6 +4,11 @@ A [libGDX](https://libgdx.com/) project generated with [gdx-liftoff](https://git
 
 This project was generated with a template including simple application launchers and an `ApplicationAdapter` extension that draws libGDX logo.
 
+# Assets
+
+The skin and font assets are from the github repository from czyzby/gdx-skins.
+
+
 ## Platforms
 
 - `core`: Main module with the application logic shared by all platforms.
