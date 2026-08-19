@@ -1,6 +1,9 @@
 package de.nicolas.views;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import de.nicolas.GdxGame;
 
 public class PreferencesScreen implements Screen {
@@ -8,8 +11,15 @@ public class PreferencesScreen implements Screen {
     /** Verweis auf die Hauptspiel-Klasse, die das wechseln von Screens ermöglicht */
     private GdxGame game;
 
+    /** Stage ist die Grundlage für unser Menu und reagiert auf Input */
+    private Stage stage;
+
     public PreferencesScreen(GdxGame game) {
         this.game = game;
+
+        stage = new Stage(new ScreenViewport());
+
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
