@@ -1,6 +1,7 @@
 package de.nicolas;
 
 import com.badlogic.gdx.Game;
+import de.nicolas.utils.AppPreferences;
 import de.nicolas.views.*;
 
 public class GdxGame extends Game {
@@ -11,6 +12,7 @@ public class GdxGame extends Game {
     private MenuScreen menuScreen;
     private MainScreen mainScreen;
     private EndScreen endScreen;
+    private AppPreferences preferences;
 
     /** Die möglichen Zustände in die das Spiel wechseln kann */
     public final static int MENU = 0;
@@ -20,6 +22,7 @@ public class GdxGame extends Game {
 
     @Override
     public void create() {
+        preferences = new AppPreferences();
         loadingScreen = new LoadingScreen(this);
         setScreen(loadingScreen);
     }
@@ -52,5 +55,9 @@ public class GdxGame extends Game {
                 setScreen(endScreen);
                 break;
         }
+    }
+
+    public AppPreferences getPreferences() {
+        return preferences;
     }
 }
