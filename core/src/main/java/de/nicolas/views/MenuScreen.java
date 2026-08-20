@@ -25,15 +25,16 @@ public class MenuScreen implements Screen {
         this.game = game;
 
         stage = new Stage(new ScreenViewport());
-
-        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
     public void show() {
+        stage.clear();
+        Gdx.input.setInputProcessor(stage);
+
         Table table = new Table();
         table.setFillParent(true);
-        table.setDebug(true);
+        table.setDebug(false);
         stage.addActor(table);
 
         Skin skin = new Skin(Gdx.files.internal("skin/glassy-ui.json"));
